@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import subprocess
 
 user_VPN = input("Escolha o nome do usuário da VPN ")
