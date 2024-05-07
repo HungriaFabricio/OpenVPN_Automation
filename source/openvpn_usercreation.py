@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 
 import subprocess
+import os
 
 user_VPN = input("Escolha o nome do usuário da VPN ")
 password_VPN = input("Escolha a senha do usuário da VPN ")
 
 # Entrar no diretório easy-rsa
 
-first_command = "cd ~/easy-rsa/"
-first_result = subprocess.run(first_command, shell=True)
+first_command = os.chdir("cd ~/easy-rsa/")
 
 # Criação do Certificado
 
