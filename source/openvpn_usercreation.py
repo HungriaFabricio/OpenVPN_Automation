@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import subprocess
-import os, time
+import os, time, shutil, tempfile
 from ovpn_config import openvpn_config
 
 user_VPN = input("Escolha o nome do usuário da VPN ")
@@ -61,15 +61,16 @@ print("Criação do arquivo OpenVPN")
 
 fifteenth_command = os.chdir("/home/openvpn/vpn_clients/{user}".format(user = user_VPN))
 
+with tempfile.NamedTemporaryFile(mode='w', delete=False) as temp_file:
+    temp_file.write(openvpn_config)
+try:
+    shutil.move(temp_file.name, 'make_client_ovpn.sh')
+    print("Configuração do openvpn_config foram aplicadas.")
+except Exception as e:
+    print(f'Erro ao aplicar as configs do OpenVPN {e}')
+
 sixteenth_command = "nano make_client_ovpn.sh"
 sixteenth_result = subprocess.run(sixteenth_command, shell=True)
-
-if sixteenth_result.returncode == 0:
-    print("O comando nano foi ativado e estará enviando as configurações.")
-    with open("make_client_ovpn.sh", 'w') as script_file:
-        script_file.write(openvpn_config)
-else:
-    print("O comando nano não foi concluído com sucesso, verifique o arquivo.")
 
 print("Tornando o arquivo OpenVPN executável e atribuindo para {user}".format(user = user_VPN))
 
