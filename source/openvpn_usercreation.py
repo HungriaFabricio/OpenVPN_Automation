@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import subprocess
-import os
+import os, time
 
 user_VPN = input("Escolha o nome do usuário da VPN ")
 password_VPN = input("Escolha a senha do usuário da VPN ")
@@ -15,6 +15,8 @@ first_command = os.chdir("cd ~/easy-rsa/")
 second_command  = "./easyrsa gen-req {user} pass".format(user = user_VPN)
 second_result = subprocess.run(second_command, shell=True)
 
+time.sleep(2)
+
 third_command = password_VPN
 third_result = subprocess.run(third_command, shell=True)
 
@@ -23,35 +25,32 @@ fourth_result = subprocess.run(fourth_command, shell=True)
 
 # Criação do TLS Crypt V2
 
-fifth_command = "cd ~/easy-rsa/pki/"
-fifth_result = subprocess.run(first_command, shell=True)
+fifth_command = os.chdir("cd ~/easy-rsa/pki/")
 
 sixth_command = "openvpn --tls-crypt-v2 private/vpn_server.pem --genkey tls-crypt-v2-client private/{user}.pem".format(user = user_VPN)
 sixth_result = subprocess.run(sixth_command, shell=True)
 
 #Criação do diretório do usuário
 
-seventh_command = "cd ~/vpn_clients"
-seventh_result = subprocess.run(seventh_command, shell=True)
+seventh_command = os.chdir("cd ~/vpn_clients")
 
 eighth_command = "mkdir {user}".format(user = user_VPN)
 eighth_result = subprocess.run(eighth_command, shell=True)
 
 # Cópia do arquivo ca.crt
 
-nineth_command = "cd ~/easy-rsa/pki/"
+nineth_command = os.chdir("cd ~/easy-rsa/pki/")
 nineth_result = "cp ca.crt ~/vpn_clients/{user}".format(user = user_VPN)
+nineth_results = subprocess.run(nineth_result, shell=True)
 
 # Cópia do arquivo crt e key
 
-tenth_command = "cd ~/easy-rsa/pki/issued/"
-tenth_result = subprocess.run(tenth_command, shell=True)
+tenth_command = os.chdir("cd ~/easy-rsa/pki/issued/")
 
 eleventh_command = "cp {user}.crt ~vpn_clientes/{user}".format(user = user_VPN)
 eleventh_result = subprocess.run(eleventh_command, shell=True)
 
-twelfth_command = "cd ~/easy-rsa/pki/private/"
-twelfth_command = subprocess.run(twelfth_command, shell=True)
+twelfth_command = os.chdir("cd ~/easy-rsa/pki/private/")
 
 # Cópia das chaves.
 
@@ -63,8 +62,7 @@ fourteenth_result = subprocess.run(fourteenth_command, shell=True)
 
 # Transfêrencia do make_client
 
-fifteenth_command = "cd /home/openvpn/vpn_clients"
-fifteenth_result = subprocess.run(fifteenth_command, shell=True)
+fifteenth_command = os.chdir("cd /home/openvpn/vpn_clients")
 
 sixteenth_command = "mv make_client_ovpn.sh /home/openvpn/vpn_clients/{user}".format(user = user_VPN)
 sixteenth_result = subprocess.run(sixteenth_command, shell=True)
