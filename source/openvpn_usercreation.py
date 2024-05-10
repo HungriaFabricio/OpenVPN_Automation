@@ -44,7 +44,7 @@ print("Cópia do arquivo crt e key")
 
 tenth_command = os.chdir("/home/openvpn/easy-rsa/pki/issued/")
 
-eleventh_command = "cp {user}.crt /home/openvpn/vpn_clientes/{user}/".format(user = user_VPN)
+eleventh_command = "cp {user}.crt /home/openvpn/vpn_clients/{user}".format(user = user_VPN)
 eleventh_result = subprocess.run(eleventh_command, shell=True)
 
 twelfth_command = os.chdir("/home/openvpn/easy-rsa/pki/private/")
@@ -59,7 +59,7 @@ fourteenth_result = subprocess.run(fourteenth_command, shell=True)
 
 print("Transfêrencia do make_client")
 
-fifteenth_command = os.chdir("/home/openvpn/home/openvpn/vpn_clients")
+fifteenth_command = os.chdir("/home/openvpn/vpn_clients")
 
 sixteenth_command = "mv make_client_ovpn.sh /home/openvpn/vpn_clients/{user}/".format(user = user_VPN)
 sixteenth_result = subprocess.run(sixteenth_command, shell=True)
