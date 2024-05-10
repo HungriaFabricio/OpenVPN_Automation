@@ -2,6 +2,7 @@
 
 import subprocess
 import os, time
+from ovpn_config import openvpn_config
 
 user_VPN = input("Escolha o nome do usuário da VPN ")
 
@@ -56,16 +57,29 @@ thirteenth_result = subprocess.run(thirteenth_command, shell=True)
 fourteenth_command = "cp {user}.pem /home/openvpn/vpn_clients/{user}/".format(user = user_VPN)
 fourteenth_result = subprocess.run(fourteenth_command, shell=True)
 
-print("Transferência do arquivo OpenVPN")
+print("Criação do arquivo OpenVPN")
 
-fifteenth_command = os.chdir("/home/openvpn/vpn_clients")
+fifteenth_command = os.chdir("/home/openvpn/vpn_clients/{user}".format(user = user_VPN))
 
-sixteenth_command = "cp Default.ovpn /home/openvpn/vpn_clients/{user}".format(user = user_VPN)
+sixteenth_command = "nano make_client_ovpn.sh"
 sixteenth_result = subprocess.run(sixteenth_command, shell=True)
 
-seventeenth_command = os.chdir("/home/openvpn/vpn_clients/{user}".format(user = user_VPN))
+if sixteenth_result.returncode == 0:
+    print("O comando nano foi ativado e estará enviando as configurações.")
+    with open("make_client_ovpn.sh", 'w') as script_file:
+        script_file.write(openvpn_config)
+else:
+    print("O comando nano não foi concluído com sucesso, verifique o arquivo.")
 
-eighteenth_command = "mv Default.ovpn {user}.ovpn".format(user = user_VPN)
+print("Tornando o arquivo OpenVPN executável e atribuindo para {user}".format(user = user_VPN))
+
+seventeenth_command = "chmod +x make_client_ovpn.sh"
+seventeenth_result = subprocess.run(seventeenth_command, shell=True)
+
+print("Atribuição ao user.")
+
+eighteenth_command = "./make_client_ovpn.sh {user}".format(user = user_VPN)
+eighteenth_result = subprocess.run(eighteenth_command, shell=True)
 
 print("Pause")
 
