@@ -57,12 +57,16 @@ thirteenth_result = subprocess.run(thirteenth_command, shell=True)
 fourteenth_command = "cp {user}.pem /home/openvpn/vpn_clients/{user}/".format(user = user_VPN)
 fourteenth_result = subprocess.run(fourteenth_command, shell=True)
 
-print("Transfêrencia do make_client")
+print("Transferência do arquivo OpenVPN")
 
 fifteenth_command = os.chdir("/home/openvpn/vpn_clients")
 
-sixteenth_command = "mv make_client_ovpn.sh /home/openvpn/vpn_clients/{user}/".format(user = user_VPN)
+sixteenth_command = "cp Default.ovpn /home/openvpn/vpn_clients/{user}".format(user = user_VPN)
 sixteenth_result = subprocess.run(sixteenth_command, shell=True)
+
+seventeenth_command = os.chdir("/home/openvpn/vpn_clients/{user}".format(user = user_VPN))
+
+eighteenth_command = "mv ./Default.ovpn {user}.ovpn".format(user = user_VPN)
 
 print("Pause")
 
