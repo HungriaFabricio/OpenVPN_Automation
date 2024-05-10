@@ -70,5 +70,5 @@ final = input("O arquivo foi conclúido? Y/N ")
 
 if final == "Y":
     print("VPN criada com sucesso!")
-else
+else:
     print("Algum erro ocorreu no código, contate o time de infraestrutura =)")
