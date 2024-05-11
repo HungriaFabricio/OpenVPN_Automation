@@ -1,4 +1,7 @@
-openvpn_config = """#!/bin/bash 
+import textwrap
+
+openvpn_config = textwrap.dedent("""\
+#!/bin/bash 
 
 # 1 argument = Client_identifier
 cat <(echo -e 'client') \
@@ -24,4 +27,4 @@ cat <(echo -e 'client') \
     ${1}.pem \
     <(echo -e '</tls-crypt-v2>') \
     > ${1}.ovpn
-"""
+""")
