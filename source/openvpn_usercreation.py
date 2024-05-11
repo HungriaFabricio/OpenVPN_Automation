@@ -85,12 +85,12 @@ eighteenth_result = subprocess.run(eighteenth_command, shell=True)
 print("Pause")
 
 while True:
-    final = input("A VPN foi criada com sucesso? (Y/N): ").strip().upper()  # Remover espaços em branco e converter para maiúsculas
+    final = input("A VPN foi criada com sucesso? (Y/N): ").strip().lower()
     
-    if final == "Y" or "sim" or "yes":
+    if final == "Y" or final == "sim":
         print("VPN criada com sucesso =)")
         break  # Sai do loop se a resposta for "Y"
-    elif final == "N" or "nao" or "no":
+    elif final == "N" or final == "nao":
         print("Algum erro ocorreu no código, contate o time de infraestrutura =(")
         break  # Sai do loop se a resposta for "N"
     else:
