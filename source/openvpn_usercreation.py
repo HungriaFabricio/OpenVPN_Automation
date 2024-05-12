@@ -2,7 +2,7 @@
 
 import subprocess
 import os, time, shutil, tempfile
-from ovpn_config import openvpn_config
+from ovpn_config import *
 
 user_VPN = input("Escolha o nome do usuário da VPN ")
 

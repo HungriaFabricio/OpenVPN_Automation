@@ -1,10 +1,8 @@
-import textwrap
-
 openvpn_config = """#!/bin/bash 
 
 # 1 argument = Client_identifier
 cat <(echo -e 'client') \\
-<(echo -e 'proto udp') \\
+<(echo -e 'proto tcp') \\
 <(echo -e 'dev tun') \\
 <(echo -e 'remote 127.0.0.1 1194') \\
 <(echo -e 'resolv-retry infinite') \\
