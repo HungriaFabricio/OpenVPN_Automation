@@ -2,19 +2,19 @@
 
 ![OpenVPN logo](image.png)
 ![GitHub last commit](https://img.shields.io/github/last-commit/HungriaFabricio/OpenVPN_Automation)
-[![Readme EN](https://img.shields.io/badge/lang-ENGLISH-blue)]()
+[![Readme EN](https://img.shields.io/badge/lang-PT/BR-purple)](https://github.com/HungriaFabricio/OpenVPN_Automation)
 
-## Contexto
+## Context
 
-Esse repositório tem como objetivo de fazer automação da configuração do cliente da OpenVPN.
+This repository aims to automate the configuration of the OpenVPN client.
 
-## Pré-requisitos
+## Prerequisites
 
 * Ubuntu 24.04 LTS+
 * Python ≥ 3.10.1
-* OpenVPN instalado
+* OpenVPN installed
 
-## Como rodar?
+## How to Run?
 
 ``` bash
 $ git clone https://github.com/HungriaFabricio/OpenVPN_Automation.git
@@ -22,9 +22,8 @@ cd ~/OpenVPN_Automation
 python3 openvpn_usercreation.py
 ``` 
 
-## Referências
+## References
 
 * [SimplificandoRedes](https://simplificandoredes.com/instalar-open-vpn-em-linux/#criando-o-arquivo-ovpn-do-open-vpn)
 * [Docs.Python](https://docs.python.org/3/library/subprocess.html)
 * [Stackoverflow](https://stackoverflow.com/questions/89228/how-do-i-execute-a-program-or-call-a-system-command)
-
