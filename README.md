@@ -2,7 +2,7 @@
 
 ![OpenVPN logo](image.png)
 ![GitHub last commit](https://img.shields.io/github/last-commit/HungriaFabricio/OpenVPN_Automation)
-[![Readme EN](https://img.shields.io/badge/lang-ENGLISH-blue)]()
+[![Readme EN](https://img.shields.io/badge/lang-ENGLISH-blue)](https://github.com/HungriaFabricio/OpenVPN_Automation/blob/main/README.en.md)
 
 ## Contexto
 
